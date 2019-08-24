@@ -50,7 +50,7 @@ parser.add_argument('--print-freq', '-p', default=10, type=int,
                     metavar='N', help='print frequency (default: 10)')
 parser.add_argument('--resume', default='', type=str, metavar='PATH',
                     help='path to latest checkpoint (default: none)')
-parser.add_argument('-e', '--evaluate', dest='evaluate', default=True,
+parser.add_argument('-e', '--evaluate', dest='evaluate', default=False,
                     action='store_true', help='evaluate model on validation set')
 parser.add_argument('--pretrained', default='imagenet', help='use pre-trained model')
 parser.add_argument('--do-not-preserve-aspect-ratio',
@@ -69,7 +69,7 @@ def main():
     print("=> creating model '{}'".format(args.arch))
     if args.pretrained.lower() not in ['false', 'none', 'not', 'no', '0']:
         print("=> using pre-trained parameters '{}'".format(args.pretrained))
-        model = pretrainedmodels.__dict__[args.arch](num_classes=1000,
+        model = pretrainedmodels.__dict__[args.arch](num_classes=101,
                                                      pretrained=args.pretrained)
     else:
         model = pretrainedmodels.__dict__[args.arch]()
